@@ -11,6 +11,5 @@ export const contextDefaultValues: IAppContext = {
   age: 30,
   setName: (name: string) => {},
 };
-export const AppContext = React.createContext<IAppContext | null>(
-  contextDefaultValues
-);
+export const AppContext =
+  React.createContext<IAppContext>(contextDefaultValues);

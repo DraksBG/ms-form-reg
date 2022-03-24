@@ -1,11 +1,9 @@
-import { useState } from "react";
-import {
-  AppContext,
-  contextDefaultValues,
-} from "../context/state";
+import { AppProps } from "next/app";
+import { FC, useState } from "react";
+import { AppContext, contextDefaultValues } from "../context/state";
 import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }) {
+const MyApp: FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   const [currName, setCurrName] = useState<string>(contextDefaultValues.name);
   const age = 30;
   const setName = (name: string) => setCurrName(() => name);
@@ -14,6 +12,6 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
     </AppContext.Provider>
   );
-}
+};
 
 export default MyApp;
