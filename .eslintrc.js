@@ -1,11 +1,11 @@
-{
-  "env": {
-    "browser": true,
-    "es2021": true,
-    "node": true,
-    "jest": true
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+    jest: true,
   },
-  "extends": [
+  extends: [
     "next",
     "next/core-web-vitals",
     "airbnb",
@@ -15,22 +15,22 @@
     "plugin:jest/recommended",
     "plugin:promise/recommended",
     "plugin:unicorn/recommended",
-    "prettier" // Prettier must be last brodie.
+    "prettier", // Prettier must be last brodie.
   ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": "./tsconfig.json"
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    project: "./tsconfig.json",
   },
-  "plugins": [
+  plugins: [
     "@typescript-eslint",
     "eslint-comments",
     "jest",
     "promise",
     "import",
     "unicorn",
-    "prettier"
+    "prettier",
   ],
-  "rules": {
+  rules: {
     // I suggest you add at least those two rules:
     "prettier/prettier": "error",
     "@typescript-eslint/no-unused-vars": "error",
@@ -45,17 +45,17 @@
     // Airbnb prefers forEach
     "unicorn/no-array-for-each": "off",
     // It's not accurate in the monorepo style
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
   },
-  "settings": {
+  settings: {
     "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
+      "@typescript-eslint/parser": [".ts", ".tsx"],
     },
     "import/resolver": {
-      "typescript": {
-        "alwaysTryTypes": true,
-        "project": "./tsconfig.json"
-      }
-    }
-  }
-}
+      typescript: {
+        alwaysTryTypes: true,
+        project: "./tsconfig.json",
+      },
+    },
+  },
+};
