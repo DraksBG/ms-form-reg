@@ -12,10 +12,13 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.4",
     "cross-env": "^7.0.3",
     "next": "12.1.0",
+    "postcss": "^8.4.12",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "tailwindcss": "^3.0.23"
   },
   "devDependencies": {
     "@testing-library/dom": "^8.11.4",

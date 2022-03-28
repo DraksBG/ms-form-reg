@@ -1,7 +1,7 @@
 import { AppProps } from "next/app";
+import "tailwindcss/tailwind.css";
 import { FC, useState } from "react";
 import { AppContext, contextDefaultValues } from "../context/state";
-import "../styles/globals.css";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   const [currName, setCurrName] = useState<string>(contextDefaultValues.name);
