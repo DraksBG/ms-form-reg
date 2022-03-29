@@ -35,15 +35,11 @@ describe("AccountDetail", () => {
     if (button) {
       user.click(button);
     }
-    const form = screen.queryByTestId("form");
-    if (form) {
-      fireEvent.submit(form);
-    }
+
     expect(emailInput).toHaveValue("some@email.com");
     expect(passwordInput).toHaveValue("1234567asd");
     expect(securityQuestionAInput).toHaveValue("some question");
     expect(securityQuestionBInput).toHaveValue("some question");
     expect(button).toBeInTheDocument();
-
   });
 });
