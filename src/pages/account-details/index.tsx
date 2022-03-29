@@ -1,12 +1,7 @@
 import AccountDetail from "../../components/AccountDetails/AccountDetail";
-import Layout from "../../components/Layout/Layout/Layour";
 
 const AccountDetails = () => {
-  return (
-    <Layout>
-      <AccountDetail />
-    </Layout>
-  );
+  return <AccountDetail />;
 };
 
 export default AccountDetails;
