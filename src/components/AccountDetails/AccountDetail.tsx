@@ -3,12 +3,11 @@ import { useRouter } from "next/router";
 import { AppContext } from "../../context/state";
 
 import Layout from "../Layout/Layout/Layour";
+import { InitialInputValues, InputsNames } from "./AccountDetails.type";
 import {
-  InitialInputValues,
-  InputsNames,
-  IValuesValidate,
-} from "./AccountDetails.type";
-import { authFieldsValidator } from "../../lib/Validators/account-details-validator";
+  authFieldsValidator,
+  checkValidationFields,
+} from "../../lib/Validators/account-details-validator";
 
 const AccountDetail: FC = () => {
   const router = useRouter();
@@ -21,12 +20,9 @@ const AccountDetail: FC = () => {
     const newValuesValidateState = {
       ...localState["valuesValidate"],
     };
-    const restValuesState: any = {
-      ...localState["secretQuestions"],
-    };
 
     const currentElement = e.currentTarget;
-    const targetName = currentElement.name as InputsNames ;
+    const targetName = currentElement.name as InputsNames;
     const targetValue = currentElement.value;
 
     newValuesState[targetName] = targetValue;
@@ -34,24 +30,35 @@ const AccountDetail: FC = () => {
       targetValue,
       targetName
     );
-    restValuesState[targetName] = targetValue;
     setLocalState({
       ["initial"]: newValuesState,
       ["valuesValidate"]: newValuesValidateState,
-      ["secretQuestions"]: restValuesState,
     });
-    console.log(localState);
   };
+
+  const isLoginFiledsValid: boolean = checkValidationFields(
+    localState.valuesValidate
+  );
+
+  console.log(" isLoginFiledsValid ", isLoginFiledsValid);
+  console.log(" localState ", localState);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
+  const moveToNextStep = () => {
+    if (isLoginFiledsValid) {
+      router.push("/user-details");
+    }
+  };
+
   return (
     <Layout>
-      {/* <pre>{JSON.stringify(localState, undefined, 2)}</pre> */}
-
-      <form className="flex justify-center flex-col w-full items-center">
+      <form
+        className="flex justify-center flex-col w-full items-center"
+        onSubmit={handleSubmit}
+      >
         <input
           type="text"
           id="simple-email"
@@ -60,6 +67,7 @@ const AccountDetail: FC = () => {
           name="email"
           placeholder="Email"
           onChange={handleChange}
+          required
         />
         <div className="flex w-1/3">
           {!localState.valuesValidate.email.valid && (
@@ -78,6 +86,7 @@ const AccountDetail: FC = () => {
             name="password"
             placeholder="Password"
             onChange={handleChange}
+            required
           />
         </div>
         <div className="flex w-1/3">
@@ -106,7 +115,15 @@ const AccountDetail: FC = () => {
             name="secretQuestionA"
             placeholder="Your mother's maiden name"
             onChange={handleChange}
+            required
           />
+          <div className="flex w-1/3">
+            {!localState.valuesValidate.secretQuestionA.valid && (
+              <span className="mb-3 text-xs text-rose-500 self-baseline">
+                {localState.valuesValidate.secretQuestionA.errorMessage}
+              </span>
+            )}
+          </div>
           <input
             type="text"
             id="security-question-2"
@@ -115,7 +132,15 @@ const AccountDetail: FC = () => {
             name="secretQuestionB"
             placeholder="Your place of birth"
             onChange={handleChange}
+            required
           />
+          <div className="flex w-1/3">
+            {!localState.valuesValidate.secretQuestionB.valid && (
+              <span className="mb-3 text-xs text-rose-500 self-baseline w-full">
+                {localState.valuesValidate.secretQuestionB.errorMessage}
+              </span>
+            )}
+          </div>
         </div>
         <div className="flex flex-col w-1/3 text-sm">
           <span className="text-lg font-bold">Marketing Preferences</span>
@@ -140,8 +165,8 @@ const AccountDetail: FC = () => {
           focus:ring-offset-green-200 text-white w-1/4 transition ease-in duration-200 
           text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 
           rounded-full"
-          onClick={() => router.push("/user-details")}
-          disabled
+          onClick={moveToNextStep}
+          disabled={!isLoginFiledsValid}
         >
           CONTINUE
         </button>

@@ -1,6 +1,8 @@
 export interface IEmailAndPasswordState {
   email: string;
   password: string;
+  secretQuestionA: string;
+  secretQuestionB: string;
 }
 
 export interface IValidate {
@@ -11,6 +13,8 @@ export interface IValidate {
 export interface IValuesValidate {
   email: IValidate;
   password: IValidate;
+  secretQuestionA: IValidate;
+  secretQuestionB: IValidate;
 }
 
 export interface ISecretQuestions {
@@ -21,24 +25,28 @@ export interface ISecretQuestions {
 export interface InputsInitiaState {
   initial: IEmailAndPasswordState;
   valuesValidate: IValuesValidate;
-  secretQuestions: ISecretQuestions;
 }
 
 export const InitialInputValues: InputsInitiaState = {
   initial: {
     email: "",
     password: "",
+    secretQuestionA: "",
+    secretQuestionB: "",
   },
   valuesValidate: {
     email: { valid: false, errorMessage: "" },
     password: { valid: false, errorMessage: "" },
+    secretQuestionA: { valid: false, errorMessage: "" },
+    secretQuestionB: { valid: false, errorMessage: "" },
   },
-  secretQuestions: { secretQuestionA: "", secretQuestionB: "" },
 };
 
 export const inputValuesErrors = {
   emptyEmail: "Enter a email",
   emptyPassword: "Enter a password",
+  emptySecurityQuestionA: "Enter a question that only you would know",
+  emptySecurityQuestionB: "Enter a question that only you would know",
   email: "Enter a valid email",
   password: "Enter a valid password",
 };

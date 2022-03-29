@@ -1,4 +1,7 @@
-import { inputValuesErrors } from "../../components/AccountDetails/AccountDetails.type";
+import {
+  inputValuesErrors,
+  IValuesValidate,
+} from "../../components/AccountDetails/AccountDetails.type";
 import { VALID_EMAIL_REG, VALID_PASSWORD_REG } from "./regex";
 
 export const authFieldsValidator = (value: string, name: string) => {
@@ -34,6 +37,23 @@ export const authFieldsValidator = (value: string, name: string) => {
       };
       break;
 
+    case "secretQuestionA":
+      validator = {
+        valid: value !== "",
+        errorMessage: `${
+          value === "" ? inputValuesErrors.emptySecurityQuestionA : ""
+        }`,
+      };
+      break;
+    case "secretQuestionB":
+      validator = {
+        valid: value !== "",
+        errorMessage: `${
+          value === "" ? inputValuesErrors.emptySecurityQuestionB : ""
+        }`,
+      };
+      break;
+
     default:
       validator = {
         valid: false,
@@ -44,3 +64,6 @@ export const authFieldsValidator = (value: string, name: string) => {
 
   return validator;
 };
+
+export const checkValidationFields = (obj: IValuesValidate) =>
+  Object.values(obj).every((ele) => ele.valid);
