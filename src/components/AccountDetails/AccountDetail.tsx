@@ -54,6 +54,7 @@ const AccountDetail: FC = () => {
     <form
       className="flex justify-center flex-col w-full items-center"
       onSubmit={handleSubmit}
+      data-testid="form"
     >
       <input
         type="text"
@@ -160,6 +161,7 @@ const AccountDetail: FC = () => {
         </div>
       </div>
       <button
+        type="submit"
         data-testid="continue-button"
         className="self-center m-16 py-4 px-4 
           bg-green-500 hover:bg-green-700 focus:ring-green-500 
