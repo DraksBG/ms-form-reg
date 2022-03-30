@@ -68,11 +68,11 @@ describe("AccountDetail", () => {
       },
     };
 
-    const setInputs = jest.fn();
+    const handleChange = jest.fn();
     const inputs: InputsInitiaState = mockState;
     const storeValues: IAccountDetailsContextProps = {
       inputs,
-      setInputs,
+      handleChange,
     };
 
     render(

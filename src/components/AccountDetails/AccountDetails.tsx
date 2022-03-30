@@ -13,7 +13,7 @@ import RegisterFields from "./AdditionalComponents/RegisterFields";
 
 const AccountDetails: FC = () => {
   const router = useRouter();
-  const { inputs, setInputs } = useContext(AccountDetalsContext);
+  const { inputs, handleChange } = useContext(AccountDetalsContext);
   const [isLoginFiledsValid, seIsLoginFiledsValid] = useState<boolean>(false);
 
   useEffect(() => {
@@ -22,30 +22,6 @@ const AccountDetails: FC = () => {
     }
   }, [inputs?.valuesValidate]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (inputs) {
-      const newValuesState = {
-        ...inputs["initial"],
-      };
-      const newValuesValidateState = {
-        ...inputs["valuesValidate"],
-      };
-
-      const currentElement = e.currentTarget;
-      const targetName = currentElement.name as InputsNames;
-      const targetValue = currentElement.value;
-
-      newValuesState[targetName] = targetValue;
-      newValuesValidateState[targetName] = fieldsValidator(
-        targetValue,
-        targetName
-      );
-      setInputs({
-        ["initial"]: newValuesState,
-        ["valuesValidate"]: newValuesValidateState,
-      });
-    }
-  };
 
   return (
     <div
