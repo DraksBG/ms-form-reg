@@ -8,19 +8,20 @@ const RegisterFields: FC<Props> = ({ handleChange, localState }) => {
       <InputField
         type="email"
         onChange={handleChange}
-        value={localState.initial.email}
-        errorMessage={localState.valuesValidate.email.errorMessage}
-        isValid={localState.valuesValidate.email.valid}
+        value={localState?.initial.email}
+        errorMessage={localState?.valuesValidate.email.errorMessage}
+        isValid={localState?.valuesValidate.email.valid}
         placeholder="Email"
         name="email"
         dataTestid="email"
       />
       <InputField
         type="password"
+        showPassword
         onChange={handleChange}
-        value={localState.initial.password}
-        errorMessage={localState.valuesValidate.password.errorMessage}
-        isValid={localState.valuesValidate.password.valid}
+        value={localState?.initial.password}
+        errorMessage={localState?.valuesValidate.password.errorMessage}
+        isValid={localState?.valuesValidate.password.valid}
         placeholder="Password"
         name="password"
         dataTestid="password"

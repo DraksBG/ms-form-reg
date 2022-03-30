@@ -55,3 +55,8 @@ export enum InputsNames {
   EMAIL = "email",
   PASSWORD = "password",
 }
+
+export const checkoxTextArr = [
+  "I am happy for my first name to be shown on the site if I win (Optional)",
+  "Email me about promotions and new, large jackpots and results (Optional)",
+];

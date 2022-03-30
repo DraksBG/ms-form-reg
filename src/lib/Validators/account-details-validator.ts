@@ -4,15 +4,13 @@ import {
 } from "../../components/AccountDetails/AccountDetails.type";
 import { VALID_EMAIL_REG, VALID_PASSWORD_REG } from "./regex";
 
-export const authFieldsValidator = (value: string, name: string) => {
-  let validator;
-
+export const fieldsValidator = (value: string, name: string) => {
   const isEmailValid = new RegExp(VALID_EMAIL_REG);
   const isPasswordValid = new RegExp(VALID_PASSWORD_REG);
 
   switch (name) {
     case "email":
-      validator = {
+      return {
         valid: isEmailValid.test(value),
         errorMessage: `${
           !isEmailValid.test(value) && value !== ""
@@ -22,10 +20,9 @@ export const authFieldsValidator = (value: string, name: string) => {
             : ""
         }`,
       };
-      break;
 
     case "password":
-      validator = {
+      return {
         valid: isPasswordValid.test(value),
         errorMessage: `${
           !isPasswordValid.test(value) && value !== ""
@@ -35,35 +32,30 @@ export const authFieldsValidator = (value: string, name: string) => {
             : ""
         }`,
       };
-      break;
 
     case "secretQuestionA":
-      validator = {
+      return {
         valid: value !== "",
         errorMessage: `${
           value === "" ? inputValuesErrors.emptySecurityQuestionA : ""
         }`,
       };
-      break;
+
     case "secretQuestionB":
-      validator = {
+      return {
         valid: value !== "",
         errorMessage: `${
           value === "" ? inputValuesErrors.emptySecurityQuestionB : ""
         }`,
       };
-      break;
 
     default:
-      validator = {
+      return {
         valid: false,
         errorMessage: "",
       };
-      break;
   }
-
-  return validator;
 };
 
 export const checkValidationFields = (obj: IValuesValidate) =>
-  Object.values(obj).every((ele) => ele.valid);
+  Object?.values(obj)?.every((element) => element.valid);

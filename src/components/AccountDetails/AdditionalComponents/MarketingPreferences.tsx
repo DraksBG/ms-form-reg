@@ -1,23 +1,16 @@
 import { FC } from "react";
+import Checkbox from "../../UI/InputField/Checkbox";
+import { checkoxTextArr } from "../AccountDetails.type";
 
 const MarketingPreferences: FC = () => {
   return (
-    <div className="flex flex-col w-1/3 text-sm">
+    <div className="flex flex-col w-1/3 text-sm" key="1">
       <span className="text-lg font-bold">Marketing Preferences</span>
-      <div className="flex my-2">
-        <input type="checkbox" className=" form-tick w-7 h-7 mr-1" />
-        <span className=" text-slate-500">
-          I am happy for my first name to be shown on the site if I win
-          (Optional)
-        </span>
-      </div>
-      <div className="flex my-2">
-        <input type="checkbox" className=" form-tick w-7 h-7 mr-1" />
-        <span className=" text-slate-500">
-          Email me about promotions and new, large jackpots and results
-          (Optional)
-        </span>
-      </div>
+      {checkoxTextArr.map((text, index) => (
+        <div key={`${text}_${index}`}>
+          <Checkbox text={text}/>
+        </div>
+      ))}
     </div>
   );
 };

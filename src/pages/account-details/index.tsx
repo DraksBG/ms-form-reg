@@ -1,7 +1,7 @@
-import AccountDetail from "../../components/AccountDetails/AccountDetail";
+import AccountDetails from "../../components/AccountDetails/AccountDetails";
 
-const AccountDetails = () => {
-  return <AccountDetail />;
+const AccountDetailsPage = () => {
+  return <AccountDetails />;
 };
 
-export default AccountDetails;
+export default AccountDetailsPage;
