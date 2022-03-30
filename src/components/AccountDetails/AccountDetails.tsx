@@ -47,12 +47,6 @@ const AccountDetails: FC = () => {
     }
   };
 
-  const moveToNextStep = () => {
-    if (isLoginFiledsValid) {
-      router.push("/user-details");
-    }
-  };
-
   return (
     <div
       className="flex justify-center flex-col w-full items-center"
@@ -69,7 +63,7 @@ const AccountDetails: FC = () => {
           text-white w-1/4 
           text-center text-base font-semibold shadow-md
           rounded-full"
-        onClick={moveToNextStep}
+        onClick={() => router.push("/user-details")}
         disabled={!isLoginFiledsValid}
       >
         CONTINUE

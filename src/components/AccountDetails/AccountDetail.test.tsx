@@ -1,4 +1,5 @@
 import React from "react";
+import { RouterContext } from "next/dist/shared/lib/router-context";
 import { fireEvent, render, screen } from "@testing-library/react";
 import AccountDetails from "./AccountDetails";
 import user from "@testing-library/user-event";
@@ -11,6 +12,7 @@ import {
   IAccountDetailsContextProps,
 } from "../../context/AcountDetailsContext";
 import { InputsInitiaState } from "./AccountDetails.type";
+import { createMockRouter } from "../../lib/test-utils/createMockRouter";
 
 describe("AccountDetail", () => {
   it("renders inital component", () => {
@@ -19,7 +21,12 @@ describe("AccountDetail", () => {
   });
 
   it("user types on input fields", () => {
-    render(<AccountDetails />);
+    const router = createMockRouter({ push: jest.fn() });
+    render(
+      <RouterContext.Provider value={router}>
+        <AccountDetails />
+      </RouterContext.Provider>
+    );
     const emailInput = screen.getByTestId("email");
     const passwordInput = screen.getByTestId("password");
     const securityQuestionAInput = screen.getByTestId("security-question-1");
@@ -32,17 +39,19 @@ describe("AccountDetail", () => {
     fireEvent.change(securityQuestionBInput, {
       target: { value: "some question" },
     });
-
     const button = screen.getByTestId("continue-button");
+    fireEvent.click(button);
 
     user.click(button);
-
     expect(emailInput).toHaveValue("some@email.com");
     expect(passwordInput).toHaveValue("1234567asd");
     expect(securityQuestionAInput).toHaveValue("some question");
     expect(securityQuestionBInput).toHaveValue("some question");
     expect(button).toBeInTheDocument();
+    expect(button).not.toBeEnabled();
+    expect(button).toHaveAttribute("disabled");
   });
+
   it("testing context provider with inital values", () => {
     const mockState = {
       initial: {
