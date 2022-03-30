@@ -7,6 +7,7 @@ export interface InputFieldProps {
   placeholder: string;
   name: string;
   dataTestid?: string;
+  errorTestId?: string;
   type: string;
   showPassword?: boolean;
 }
@@ -21,6 +22,7 @@ const InputField: FC<InputFieldProps> = ({
   type,
   dataTestid,
   showPassword,
+  errorTestId,
 }) => {
   const [isPasswordShown, setIsPasswordShown] = useState<boolean>(false);
 
@@ -49,7 +51,10 @@ const InputField: FC<InputFieldProps> = ({
       </div>
       <div className="flex w-auto">
         {!isValid && (
-          <span className="mb-3 pl-5 text-xs text-rose-500 self-baseline">
+          <span
+            className="mb-3 pl-5 text-xs text-rose-500 self-baseline"
+            data-testid={errorTestId}
+          >
             {errorMessage}
           </span>
         )}

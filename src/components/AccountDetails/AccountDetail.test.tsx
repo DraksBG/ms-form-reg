@@ -6,6 +6,11 @@ import {
   VALID_EMAIL_REG,
   VALID_PASSWORD_REG,
 } from "../../lib/validators/regex";
+import {
+  AccountDetalsContext,
+  IAccountDetailsContextProps,
+} from "../../context/AcountDetailsContext";
+import { InputsInitiaState } from "./AccountDetails.type";
 
 describe("AccountDetail", () => {
   it("renders inital component", () => {
@@ -19,7 +24,6 @@ describe("AccountDetail", () => {
     const passwordInput = screen.getByTestId("password");
     const securityQuestionAInput = screen.getByTestId("security-question-1");
     const securityQuestionBInput = screen.getByTestId("security-question-2");
-
     fireEvent.change(emailInput, { target: { value: "some@email.com" } });
     fireEvent.change(passwordInput, { target: { value: "1234567asd" } });
     fireEvent.change(securityQuestionAInput, {
@@ -38,6 +42,44 @@ describe("AccountDetail", () => {
     expect(securityQuestionAInput).toHaveValue("some question");
     expect(securityQuestionBInput).toHaveValue("some question");
     expect(button).toBeInTheDocument();
+  });
+  it("testing context provider with inital values", () => {
+    const mockState = {
+      initial: {
+        email: "some@email.com",
+        password: "1234567asd",
+        secretQuestionA: "some question",
+        secretQuestionB: "some question",
+      },
+      valuesValidate: {
+        email: { valid: false, errorMessage: "" },
+        password: { valid: false, errorMessage: "" },
+        secretQuestionA: { valid: false, errorMessage: "" },
+        secretQuestionB: { valid: false, errorMessage: "" },
+      },
+    };
+
+    const setInputs = jest.fn();
+    const inputs: InputsInitiaState = mockState;
+    const storeValues: IAccountDetailsContextProps = {
+      inputs,
+      setInputs,
+    };
+
+    render(
+      <AccountDetalsContext.Provider value={storeValues}>
+        <AccountDetails />
+      </AccountDetalsContext.Provider>
+    );
+    const emailInput = screen.getByTestId("email");
+    const passwordInput = screen.getByTestId("password");
+    const securityQuestionAInput = screen.getByTestId("security-question-1");
+    const securityQuestionBInput = screen.getByTestId("security-question-2");
+
+    expect(emailInput).toHaveValue("some@email.com");
+    expect(passwordInput).toHaveValue("1234567asd");
+    expect(securityQuestionAInput).toHaveValue("some question");
+    expect(securityQuestionBInput).toHaveValue("some question");
   });
 
   it("Testing valid Regex values", () => {

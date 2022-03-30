@@ -21,6 +21,7 @@ const SecurityQuestions: FC<Props> = ({ handleChange, localState }) => {
           placeholder="Your mother's maiden name"
           name="secretQuestionA"
           dataTestid="security-question-1"
+          errorTestId="security-question-1-error"
         />
         <InputField
           type="text"
@@ -31,6 +32,7 @@ const SecurityQuestions: FC<Props> = ({ handleChange, localState }) => {
           placeholder="Your place of birth"
           name="secretQuestionB"
           dataTestid="security-question-2"
+          errorTestId="security-question-2-error"
         />
       </div>
     </div>

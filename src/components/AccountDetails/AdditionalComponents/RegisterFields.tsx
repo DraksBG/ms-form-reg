@@ -14,6 +14,7 @@ const RegisterFields: FC<Props> = ({ handleChange, localState }) => {
         placeholder="Email"
         name="email"
         dataTestid="email"
+        errorTestId="email-error"
       />
       <InputField
         type="password"
@@ -25,6 +26,7 @@ const RegisterFields: FC<Props> = ({ handleChange, localState }) => {
         placeholder="Password"
         name="password"
         dataTestid="password"
+        errorTestId="password-error"
       />
       <div className="w-auto flex flex-col text-xs text-slate-500 border-b-2 mb-3 pl-5">
         <span className="m-0.5">8 - 12 characters</span>
