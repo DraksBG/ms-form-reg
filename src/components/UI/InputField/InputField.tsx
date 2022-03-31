@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 export interface InputFieldProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  isValid: boolean;
+  isValid?: boolean;
   errorMessage: string;
   value: string;
   placeholder: string;
@@ -28,7 +28,7 @@ const InputField: FC<InputFieldProps> = ({
 
   return (
     <>
-      <div className="flex m-2 border border border-gray-400 py-3 px-5 w-auto rounded-md">
+      <div className="flex m-2 border border-gray-400 py-3 px-5 w-auto rounded-md">
         <input
           type={showPassword ? (isPasswordShown ? "text" : "password") : type}
           data-testid={dataTestid}

@@ -1,6 +1,6 @@
 import { AppProps } from "next/app";
 import "tailwindcss/tailwind.css";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { AppContextProvider } from "../context/appContextProvider";
 import Layout from "../components/Layout/Layout/Layout";
 
