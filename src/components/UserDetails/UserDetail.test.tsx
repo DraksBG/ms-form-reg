@@ -5,6 +5,6 @@ import UserDetail from "./UserDetail";
 describe("UserDetail", () => {
   it("renders inital component", () => {
     render(<UserDetail />);
-    screen.getByText(/User Details/i);
+    screen.getByText(/enter your details below./i);
   });
 });

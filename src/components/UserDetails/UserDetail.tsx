@@ -10,11 +10,9 @@ const UserDetail: FC = () => {
   const { inputs } = useContext(AccountDetalsContext);
   return (
     <RegistrationLayout>
-      <pre>{JSON.stringify(inputs, null, 2)}</pre>
-      <h1>User Details</h1>
-      <h2>{name}</h2>
-      <button onClick={() => setName("Some new new name")}>Change Name</button>
-      <button onClick={() => router.push("/contact-details")}>Next Page</button>
+      <div>
+        <span>Enter your details below.</span>
+      </div>
     </RegistrationLayout>
   );
 };
