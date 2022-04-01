@@ -1,15 +1,10 @@
 import React, { useState, createContext, FC } from "react";
 import {
   InitialInputValues,
-  InputsInitiaState,
   InputsNames,
 } from "../components/AccountDetails/AccountDetails.type";
 import { fieldsValidator } from "../lib/validators/account-details-validator";
-
-export interface IAccountDetailsContextProps {
-  inputs: InputsInitiaState;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+import { IAccountDetailsContextProps } from "./ContextTpes.type";
 
 export const AccountDetalsContext = createContext<IAccountDetailsContextProps>(
   {} as IAccountDetailsContextProps
@@ -41,6 +36,7 @@ const AccountDetailsProvider: FC<React.ReactNode> = ({ children }) => {
       });
     }
   };
+
   return (
     <AccountDetalsContext.Provider value={{ inputs, handleChange }}>
       {children}

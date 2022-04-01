@@ -1,3 +1,4 @@
+import { IValidate } from "../AccountDetails/AccountDetails.type";
 export const genderArrInputs = [
   {
     type: "radio",
@@ -52,3 +53,64 @@ export const namesInputs = [
     errorTestId: "last-name-input-error",
   },
 ];
+export interface IGender {
+  gender: string;
+}
+
+export interface INamesInputsFields extends IGender {
+  firstName: string;
+  lastName: string;
+}
+export interface INamesInputErrors {
+  firstName: IValidate;
+  lastName: IValidate;
+  gender?: IValidate;
+}
+
+export interface IBirthDayInputsFields {
+  day: string;
+  month: string;
+  year: string;
+}
+
+export interface IBirthDayInputsErrors {
+  day: IValidate;
+  month: IValidate;
+  year: IValidate;
+}
+
+export const namesInputsFields: INamesInputsFields = {
+  firstName: "",
+  lastName: "",
+  gender: "",
+};
+
+export const namesInputsErrors: INamesInputErrors = {
+  firstName: { valid: false, errorMessage: "" },
+  lastName: { valid: false, errorMessage: "" },
+};
+
+export const birthDayInputsFields: IBirthDayInputsFields = {
+  day: "",
+  month: "",
+  year: "",
+};
+
+export const birthDayInputsErrors: IBirthDayInputsErrors = {
+  day: { valid: false, errorMessage: "" },
+  month: { valid: false, errorMessage: "" },
+  year: { valid: false, errorMessage: "" },
+};
+
+export const userDetailsValuesErrors = {
+  emptyFirstName: "Enter first name",
+  emptyLastName: "Enter last name",
+  firstName: "Enter a valid first name",
+  lastName: "Enter a valid last name",
+  emptyDay: "Enter day",
+  emptyMonth: "Enter month",
+  emptyYear: "Enter year",
+  day: "Enter a valid day",
+  month: "Enter a valid month",
+  year: "Enter a valid year",
+};

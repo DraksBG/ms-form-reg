@@ -1,8 +1,10 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
+import { UserDetailsContex } from "../../../context/UserDetailsContext";
 import InputField from "../../UI/InputField/InputField";
-import { namesInputs } from "../UserDetails.type";
 
 const NamesInputs: FC = ({}) => {
+  const { inputs, inputErrors, handleChange } = useContext(UserDetailsContex);
+
   return (
     <>
       <div className="w-2/5 flex flex-col text-slate-500 text-sm">
@@ -14,20 +16,26 @@ const NamesInputs: FC = ({}) => {
         </span>
       </div>
       <div className="flex flex-col w-2/5 align-baseline">
-        {namesInputs.map((namesInput, index) => (
-          <div key={`${namesInput}_${index}`}>
-            <InputField
-              name={namesInput.name}
-              type={namesInput.type}
-              placeholder={namesInput.placeholder}
-              dataTestid={namesInput.dataTestId}
-              errorTestId={namesInput.errorTestId}
-              value=""
-              errorMessage=""
-              onChange={() => {}}
-            />
-          </div>
-        ))}
+        <InputField
+          name="firstName"
+          type="text"
+          placeholder="First Name"
+          dataTestid="first-name-input"
+          errorTestId="first-name-input-error"
+          value={inputs?.firstName}
+          errorMessage={inputErrors?.firstName.errorMessage}
+          onChange={handleChange}
+        />
+        <InputField
+          name="lastName"
+          type="text"
+          placeholder="Last Name"
+          dataTestid="last-name-input"
+          errorTestId="last-name-input-error"
+          value={inputs?.lastName}
+          errorMessage={inputErrors?.lastName.errorMessage}
+          onChange={handleChange}
+        />
       </div>
     </>
   );

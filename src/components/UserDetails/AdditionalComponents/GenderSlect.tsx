@@ -1,7 +1,8 @@
-import { FC } from "react";
-import { genderArrInputs } from "../UserDetails.type";
-
+import { FC, useContext } from "react";
+import { UserDetailsContex } from "../../../context/UserDetailsContext";
 const GenderSelect: FC = ({}) => {
+  const { inputs, handleChange } = useContext(UserDetailsContex);
+
   return (
     <div className="flex flex-col w-2/5 pl-2">
       <div className="flex flex-col text-xs text-slate-500 ">
@@ -16,23 +17,44 @@ const GenderSelect: FC = ({}) => {
           Gender
         </span>
         <div className="flex">
-          {genderArrInputs.map((genderInput, index) => (
-            <div key={`${genderInput}_${index}`}>
-              <input
-                type={genderInput.type}
-                value={genderInput.value}
-                id={genderInput.id}
-                data-test-id={genderInput.dataTestid}
-                className="mr-2"
-              />
-              <label
-                htmlFor={genderInput.htmlFor}
-                className="text-xs text-slate-400 font-bold mr-2"
-              >
-                {genderInput.value}
-              </label>
-            </div>
-          ))}
+          <div className="flex">
+            <input
+              name="gender"
+              type="radio"
+              value="Male"
+              id="Male"
+              data-test-id="male-input"
+              className="mr-2"
+              onChange={handleChange}
+              checked={inputs?.gender === "Male"}
+              readOnly
+            />
+            <label
+              htmlFor="male-input"
+              className="text-xs text-slate-400 font-bold mr-2"
+            >
+              Male
+            </label>
+          </div>
+          <div className="flex">
+            <input
+              name="gender"
+              type="radio"
+              value="Female"
+              id="Female"
+              data-test-id="female-input"
+              className="mr-2"
+              onChange={handleChange}
+              checked={inputs?.gender === "Female"}
+              readOnly
+            />
+            <label
+              htmlFor="female-input"
+              className="text-xs text-slate-400 font-bold mr-2"
+            >
+              Female
+            </label>
+          </div>
         </div>
       </div>
     </div>
