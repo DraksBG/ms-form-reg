@@ -1,11 +1,10 @@
 import React, { FC } from "react";
-import { useRouter } from "next/router";
 
 import RegistrationLayout from "../Layout/RegistrationPageLayout/RegistrationLayout";
 import InputField from "../UI/InputField/InputField";
+import NextPageButton from "../UI/InputField/NextPageButton";
 
 const UserDetail: FC = () => {
-  const router = useRouter();
 
   return (
     <RegistrationLayout>
@@ -90,7 +89,12 @@ const UserDetail: FC = () => {
               >
                 Male
               </label>
-              <input type="radio" value="Female" className="mr-2"  data-test-id="female-input" />
+              <input
+                type="radio"
+                value="Female"
+                className="mr-2"
+                data-test-id="female-input"
+              />
               <label
                 htmlFor="male-input"
                 className="text-xs text-slate-400 font-bold mr"
@@ -101,6 +105,7 @@ const UserDetail: FC = () => {
           </div>
         </div>
       </div>
+      <NextPageButton pageRoute={'/contact-details'} />
     </RegistrationLayout>
   );
 };

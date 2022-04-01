@@ -26,4 +26,9 @@ describe("UserDetail", () => {
     expect(screen.getByText("Male")).toBeInTheDocument();
     expect(screen.getByText("Female")).toBeInTheDocument();
   });
+
+  it("renders next page buttons", () => {
+    render(<UserDetail />);
+    expect(screen.getByText("CONTINUE")).toBeInTheDocument();
+  });
 });
