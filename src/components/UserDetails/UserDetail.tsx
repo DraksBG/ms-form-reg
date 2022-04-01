@@ -3,9 +3,9 @@ import React, { FC } from "react";
 import RegistrationLayout from "../Layout/RegistrationPageLayout/RegistrationLayout";
 import InputField from "../UI/InputField/InputField";
 import NextPageButton from "../UI/InputField/NextPageButton";
+import GenderSelect from "./AdditionalComponents/GenderSlect";
 
 const UserDetail: FC = () => {
-
   return (
     <RegistrationLayout>
       <div className="w-2/5 flex flex-col text-slate-500 text-sm">
@@ -71,41 +71,10 @@ const UserDetail: FC = () => {
               need to Reset Your Password so <b>please ensure it is correct.</b>
             </span>
           </div>
-          <div className="flex flex-col">
-            <span className="text-xs text-slate-500 font-bold mt-5 mb-3">
-              Gender
-            </span>
-            <div className="flex">
-              <input
-                type="radio"
-                value="Male"
-                id="male-input"
-                data-test-id="male-input"
-                className="mr-2"
-              />
-              <label
-                htmlFor="male-input"
-                className="text-xs text-slate-400 font-bold mr-2"
-              >
-                Male
-              </label>
-              <input
-                type="radio"
-                value="Female"
-                className="mr-2"
-                data-test-id="female-input"
-              />
-              <label
-                htmlFor="male-input"
-                className="text-xs text-slate-400 font-bold mr"
-              >
-                Female
-              </label>
-            </div>
-          </div>
+          <GenderSelect />
         </div>
       </div>
-      <NextPageButton pageRoute={'/contact-details'} />
+      <NextPageButton pageRoute={"/contact-details"} />
     </RegistrationLayout>
   );
 };
