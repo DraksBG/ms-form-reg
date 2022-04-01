@@ -19,13 +19,15 @@ const AccountDetails: FC = () => {
 
   return (
     <RegistrationLayout>
-      <RegisterFields handleChange={handleChange} localState={inputs} />
-      <SecurityQuestions handleChange={handleChange} localState={inputs} />
-      <MarketingPreferences />
-      <NextPageButton
-        disabled={!isLoginFiledsValid}
-        pageRoute={"/user-details"}
-      />
+      <div className="mr-40 ml-40 flex flex-col items-center w-full">
+        <RegisterFields handleChange={handleChange} localState={inputs} />
+        <SecurityQuestions handleChange={handleChange} localState={inputs} />
+        <MarketingPreferences />
+        <NextPageButton
+          disabled={!isLoginFiledsValid}
+          pageRoute={"/user-details"}
+        />
+      </div>
     </RegistrationLayout>
   );
 };

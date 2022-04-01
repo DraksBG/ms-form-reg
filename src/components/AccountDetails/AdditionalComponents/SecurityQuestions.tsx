@@ -9,7 +9,7 @@ export interface Props {
 
 const SecurityQuestions: FC<Props> = ({ handleChange, localState }) => {
   return (
-    <div className="flex flex-col w-1/3 border-b-2 mb-3">
+    <div className="flex flex-col w-2/5 border-b-2 mb-3">
       <div className="mb-5">
         <span className="text-lg font-bold">Security Questions</span>
         <InputField

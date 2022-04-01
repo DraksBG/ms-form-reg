@@ -4,7 +4,7 @@ import { Props } from "./SecurityQuestions";
 
 const RegisterFields: FC<Props> = ({ handleChange, localState }) => {
   return (
-    <div className="flex flex-col w-1/3">
+    <div className="flex flex-col w-2/5">
       <InputField
         type="email"
         onChange={handleChange}

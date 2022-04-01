@@ -21,4 +21,9 @@ describe("UserDetail", () => {
     expect(screen.getByTestId("month-input")).toBeInTheDocument();
     expect(screen.getByTestId("year-input")).toBeInTheDocument();
   });
+  it("renders gender radio inputs", () => {
+    render(<UserDetail />);
+    expect(screen.getByText("Male")).toBeInTheDocument();
+    expect(screen.getByText("Female")).toBeInTheDocument();
+  });
 });

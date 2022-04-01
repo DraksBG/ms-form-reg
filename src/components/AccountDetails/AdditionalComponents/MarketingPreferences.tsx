@@ -4,7 +4,7 @@ import { checkoxTextArr } from "../AccountDetails.type";
 
 const MarketingPreferences: FC = () => {
   return (
-    <div className="flex flex-col w-1/3 text-sm" key="1">
+    <div className="flex flex-col w-2/5 text-sm" key="1">
       <span className="text-lg font-bold">Marketing Preferences</span>
       {checkoxTextArr.map((text, index) => (
         <div key={`${text}_${index}`}>
