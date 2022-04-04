@@ -8,14 +8,8 @@ import NextPageButton from "../UI/InputField/NextPageButton";
 import RegistrationLayout from "../Layout/RegistrationPageLayout/RegistrationLayout";
 
 const AccountDetails: FC = () => {
-  const { inputs, handleChange } = useContext(AccountDetalsContext);
-  const [isLoginFiledsValid, seIsLoginFiledsValid] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (inputs?.valuesValidate) {
-      seIsLoginFiledsValid(checkValidationFields(inputs.valuesValidate));
-    }
-  }, [inputs?.valuesValidate]);
+  const { inputs, handleChange, isAllAccountDetailsFieldsValid } =
+    useContext(AccountDetalsContext);
 
   return (
     <RegistrationLayout>
@@ -24,7 +18,7 @@ const AccountDetails: FC = () => {
         <SecurityQuestions handleChange={handleChange} localState={inputs} />
         <MarketingPreferences />
         <NextPageButton
-          disabled={!isLoginFiledsValid}
+          disabled={!isAllAccountDetailsFieldsValid}
           pageRoute={"/user-details"}
         />
       </div>

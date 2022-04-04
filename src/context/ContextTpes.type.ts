@@ -9,6 +9,7 @@ import {
 export interface IAccountDetailsContextProps {
   inputs: InputsInitiaState;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isAllAccountDetailsFieldsValid: boolean;
 }
 
 export interface IUserDetailsContextProps {
@@ -17,4 +18,5 @@ export interface IUserDetailsContextProps {
   birthDayInputs: IBirthDayInputsFields;
   birthDayInputErrors: IBirthDayInputsErrors;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isAllUserDetailsFieldsValid: boolean;
 }

@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
+import { UserDetailsContex } from "../../context/UserDetailsContext";
 
 import RegistrationLayout from "../Layout/RegistrationPageLayout/RegistrationLayout";
 
@@ -8,12 +9,16 @@ import GenderSelect from "./AdditionalComponents/GenderSlect";
 import NamesInputs from "./AdditionalComponents/NamesInput";
 
 const UserDetail: FC = () => {
+  const { isAllUserDetailsFieldsValid } = useContext(UserDetailsContex);
   return (
     <RegistrationLayout>
       <NamesInputs />
       <DateOfBirth />
       <GenderSelect />
-      <NextPageButton pageRoute={"/contact-details"} />
+      <NextPageButton
+        pageRoute={"/contact-details"}
+        disabled={!isAllUserDetailsFieldsValid}
+      />
     </RegistrationLayout>
   );
 };

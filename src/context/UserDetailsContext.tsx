@@ -1,11 +1,16 @@
-import React, { useState, createContext, FC } from "react";
+import React, { useState, createContext, FC, useEffect } from "react";
 import {
   birthDayInputsErrors,
   birthDayInputsFields,
+  IBirthDayInputsErrors,
+  INamesInputErrors,
   namesInputsErrors,
   namesInputsFields,
 } from "../components/UserDetails/UserDetails.type";
-import { fieldsValidator } from "../lib/validators/account-details-validator";
+import {
+  checkValidationFields,
+  fieldsValidator,
+} from "../lib/validators/account-details-validator";
 import { IUserDetailsContextProps } from "./ContextTpes.type";
 
 export const UserDetailsContex = createContext<IUserDetailsContextProps>(
@@ -14,10 +19,33 @@ export const UserDetailsContex = createContext<IUserDetailsContextProps>(
 
 export const UserDetailsProvider: FC<React.ReactNode> = ({ children }) => {
   const [inputs, setInputs] = useState(namesInputsFields);
-  const [inputErrors, setInputErrors] = useState(namesInputsErrors);
+  const [inputErrors, setInputErrors] =
+    useState<INamesInputErrors>(namesInputsErrors);
   const [birthDayInputs, setBirthDayInputs] = useState(birthDayInputsFields);
   const [birthDayInputErrors, setBirthDayInputErrors] =
-    useState(birthDayInputsErrors);
+    useState<IBirthDayInputsErrors>(birthDayInputsErrors);
+  const [isNamesFieldsValid, setIsNamesFieldsValid] = useState<boolean>(false);
+  const [isBirthDayFieldsValid, setIsBirthDayFieldsValid] =
+    useState<boolean>(false);
+  const [isAllUserDetailsFieldsValid, setIsAllUserDetailsFieldsValid] =
+    useState<boolean>(false);
+
+  useEffect(() => {
+    if (inputErrors) {
+      setIsNamesFieldsValid(checkValidationFields(inputErrors));
+    }
+    if (birthDayInputErrors) {
+      setIsBirthDayFieldsValid(checkValidationFields(birthDayInputErrors));
+    }
+    if (isNamesFieldsValid && isBirthDayFieldsValid) {
+      setIsAllUserDetailsFieldsValid(true);
+    }
+  }, [
+    inputErrors,
+    birthDayInputErrors,
+    isNamesFieldsValid,
+    isBirthDayFieldsValid,
+  ]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (inputs && inputErrors && birthDayInputs && birthDayInputErrors) {
@@ -64,6 +92,7 @@ export const UserDetailsProvider: FC<React.ReactNode> = ({ children }) => {
         birthDayInputs,
         birthDayInputErrors,
         handleChange,
+        isAllUserDetailsFieldsValid,
       }}
     >
       {children}

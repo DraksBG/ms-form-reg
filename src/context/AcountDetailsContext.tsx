@@ -1,9 +1,12 @@
-import React, { useState, createContext, FC } from "react";
+import React, { useState, createContext, FC, useEffect } from "react";
 import {
   InitialInputValues,
   InputsNames,
 } from "../components/AccountDetails/AccountDetails.type";
-import { fieldsValidator } from "../lib/validators/account-details-validator";
+import {
+  checkValidationFields,
+  fieldsValidator,
+} from "../lib/validators/account-details-validator";
 import { IAccountDetailsContextProps } from "./ContextTpes.type";
 
 export const AccountDetalsContext = createContext<IAccountDetailsContextProps>(
@@ -12,6 +15,14 @@ export const AccountDetalsContext = createContext<IAccountDetailsContextProps>(
 
 const AccountDetailsProvider: FC<React.ReactNode> = ({ children }) => {
   const [inputs, setInputs] = useState(InitialInputValues);
+  const [isAllAccountDetailsFieldsValid, setIsAllAccountDetailsFieldsValid] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (inputs?.valuesValidate) {
+      setIsAllAccountDetailsFieldsValid(checkValidationFields(inputs.valuesValidate));
+    }
+  }, [inputs?.valuesValidate]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (inputs) {
       const newValuesState = {
@@ -38,7 +49,9 @@ const AccountDetailsProvider: FC<React.ReactNode> = ({ children }) => {
   };
 
   return (
-    <AccountDetalsContext.Provider value={{ inputs, handleChange }}>
+    <AccountDetalsContext.Provider
+      value={{ inputs, handleChange, isAllAccountDetailsFieldsValid }}
+    >
       {children}
     </AccountDetalsContext.Provider>
   );
