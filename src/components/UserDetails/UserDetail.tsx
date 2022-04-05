@@ -9,18 +9,18 @@ import GenderSelect from "./AdditionalComponents/GenderSlect";
 import NamesInputs from "./AdditionalComponents/NamesInput";
 
 const UserDetail: FC = () => {
-  const { isAllUserDetailsFieldsValid } = useContext(UserDetailsContex);
-  return (
-    <RegistrationLayout>
-      <NamesInputs />
-      <DateOfBirth />
-      <GenderSelect />
-      <NextPageButton
-        pageRoute={"/contact-details"}
-        disabled={!isAllUserDetailsFieldsValid}
-      />
-    </RegistrationLayout>
-  );
+    const { isAllUserDetailsFieldsValid } = useContext(UserDetailsContex);
+    return (
+        <RegistrationLayout>
+            <NamesInputs />
+            <DateOfBirth />
+            <GenderSelect />
+            <NextPageButton
+                pageRoute={"/contact-details"}
+                disabled={!isAllUserDetailsFieldsValid}
+            />
+        </RegistrationLayout>
+    );
 };
 
 export default UserDetail;

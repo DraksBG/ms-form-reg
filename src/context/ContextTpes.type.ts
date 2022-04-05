@@ -1,22 +1,27 @@
 import { InputsInitiaState } from "../components/AccountDetails/AccountDetails.type";
 import {
-  IBirthDayInputsErrors,
-  IBirthDayInputsFields,
-  INamesInputErrors,
-  INamesInputsFields,
+    IBirthDayInputsErrors,
+    IBirthDayInputsFields,
+    INamesInputErrors,
+    INamesInputsFields,
 } from "../components/UserDetails/UserDetails.type";
 
 export interface IAccountDetailsContextProps {
-  inputs: InputsInitiaState;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  isAllAccountDetailsFieldsValid: boolean;
+    inputs: InputsInitiaState;
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    isAllAccountDetailsFieldsValid: boolean;
 }
 
 export interface IUserDetailsContextProps {
-  inputs: INamesInputsFields;
-  inputErrors: INamesInputErrors;
-  birthDayInputs: IBirthDayInputsFields;
-  birthDayInputErrors: IBirthDayInputsErrors;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  isAllUserDetailsFieldsValid: boolean;
+    userDetailsInputs: INamesInputsFields;
+    inputErrors: INamesInputErrors;
+    birthDayInputs: IBirthDayInputsFields;
+    birthDayInputErrors: IBirthDayInputsErrors;
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    isAllUserDetailsFieldsValid: boolean;
+}
+
+export interface IContactDetailsContextProps {
+    isAgreedToTerms: boolean;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }

@@ -1,7 +1,7 @@
 import UserDetail from "../../components/UserDetails/UserDetail";
 
 const UserDetails = () => {
-  return <UserDetail />;
+    return <UserDetail />;
 };
 
 export default UserDetails;

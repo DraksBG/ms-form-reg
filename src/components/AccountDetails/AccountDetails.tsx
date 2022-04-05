@@ -8,22 +8,28 @@ import NextPageButton from "../UI/InputField/NextPageButton";
 import RegistrationLayout from "../Layout/RegistrationPageLayout/RegistrationLayout";
 
 const AccountDetails: FC = () => {
-  const { inputs, handleChange, isAllAccountDetailsFieldsValid } =
-    useContext(AccountDetalsContext);
+    const { inputs, handleChange, isAllAccountDetailsFieldsValid } =
+        useContext(AccountDetalsContext);
 
-  return (
-    <RegistrationLayout>
-      <div className="mr-40 ml-40 flex flex-col items-center w-full">
-        <RegisterFields handleChange={handleChange} localState={inputs} />
-        <SecurityQuestions handleChange={handleChange} localState={inputs} />
-        <MarketingPreferences />
-        <NextPageButton
-          disabled={!isAllAccountDetailsFieldsValid}
-          pageRoute={"/user-details"}
-        />
-      </div>
-    </RegistrationLayout>
-  );
+    return (
+        <RegistrationLayout>
+            <div className="mr-40 ml-40 flex flex-col items-center w-full">
+                <RegisterFields
+                    handleChange={handleChange}
+                    localState={inputs}
+                />
+                <SecurityQuestions
+                    handleChange={handleChange}
+                    localState={inputs}
+                />
+                <MarketingPreferences />
+                <NextPageButton
+                    disabled={!isAllAccountDetailsFieldsValid}
+                    pageRoute={"/user-details"}
+                />
+            </div>
+        </RegistrationLayout>
+    );
 };
 
 export default AccountDetails;
